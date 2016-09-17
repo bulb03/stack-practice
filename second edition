@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <stdlib.h>
+int push(int [],int,int);
+int pop(int [],int);
+void printss(int [],int);
+int main(void){
+	int a[80],b,c;
+	int top = -1;
+	do{
+		printf("Please choose a function you want to use. 1)push 2)pop 3)print:");
+		scanf("%d",&b);
+		switch(b){
+			case 1:
+				printf("Please enter the number you want to push:");
+				scanf("%d",&c);
+				top = push(a,c,top);
+			break;
+			case 2:
+				if(top==-1){
+					printf("The array has nothing.Please restart the program");
+				}
+				else{
+					top = pop(a,top);
+				}
+			break;
+			case 3:
+				printss(a,top);
+			break;
+			default:
+				printf("Please enter the correct choice\n");
+			break;
+		}
+	}while(top>=0&& top<=80);
+	system("pause");
+	return 0;
+}
+
+int push(int a[],int c,int top){
+	int i;
+	if(top==-1){
+		a[0] = c;
+		top++;
+	}
+	else{
+		a[top+1] = c;
+		top++;
+	}
+	return top;
+}
+
+int pop(int a[],int top){
+	if(top==0){
+		printf("%d is the last number in the array,please restart the program\n",a[top]);
+		top--;
+	}
+	else{
+		printf("%d is removed from the array\n",a[top]);
+		top--;
+	}
+	return top;
+}
+
+void printss(int a[],int top){
+	int i;
+	for(i=0;i<=top;i++){
+		printf("%d\t",a[i]);
+	}
+	printf("\n");
+}
