@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+int push(int [],int,int);
+int pop(int [],int,int);
+void print(int [],int);
+int main(void){
+	int a[80],b,c;
+	int top = -1;
+	do{
+		printf("Please choose a function you want to use. 1)push 2)pop 3)print:");
+		scanf("%d",b);
+		switch(b){
+			case 1:
+				printf("Please enter the number you want to push:");
+				scanf("%d",&c);
+				top = push(a,c,top);
+			break;
+			case 2:
+				if(top==-1){
+					printf("The array has nothing.Please restart the program");
+				}
+				else{
+					printf("Please enter the number you want to pop:");
+					scanf("%d",&c);
+					top = pop(a,c,top);
+				}
+			break;
+			case 3:
+				print(a,top);
+			break;
+			default:
+				printf("Please enter the correct choice\n");
+			break;
+		}
+	}while(top>=0);
+	system("pause");
+	return 0;
+}
+
+int push(int a[],int c,int top){
+	int i;
+	if(top==-1){
+		a[0] = c;
+		top++;
+	}
+	else{
+		a[top+1] = c;
+		top++;
+	}
+	return top;
+}
+
+int pop(int a[],int c,int top){
+	int i;
+	if(top==0){
+		printf("%d is the last number in the array\n",a[0]);
+		top--;
+	}
+	else{
+		for(i=0;i<top;i++){
+			if(a[i]==c){
+				a[i] = 0;
+				printf("%d was popped\n",a[i]);
+			}
+		}
+		top--;
+		return top;
+	}
+}
+
+void print(int a[],int top){
+	int i;
+	for(i=0;i<top;i++){
+		printf("%d\t",a[i]);
+	}
+	printf("\n");
+}
